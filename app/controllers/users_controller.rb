@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :authenticate, only: [:show, :edit, :update, :destroy]
   before_action :authorize, only: [:edit, :update, :destroy]
 
-
   def feed
     @user = User.find(params[:id])
   end
@@ -15,11 +14,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      @oauth = Koala::Facebook::OAuth.new(305510936292740, '59d7fcd67796896198c3c150d4b0ac5c', user_feed_path(@user))
-      code_url = @oauth.url_for_oauth_code
-      binding.pry
       session[:current_user] = @user.id
-      redirect_to user_feed_path(@user)
+      @oauth = Koala::Facebook::OAuth.new(305510936292740, '59d7fcd67796896198c3c150d4b0ac5c', "http://localhost:3000/"+new_user_facebook_path(@user))
+      redirect @oauth.url_for_oauth_code
     else
       render :new
     end

@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create]
   get '/logout' => 'sessions#destroy'
 
-  # koala and facebook
-
   # users
   get '/users/:id/feed' => 'users#feed', as: 'user_feed'
-  resources :users, only: [:new, :show, :edit, :create, :update, :destroy]
+  resources :users, only: [:new, :show, :edit, :create, :update, :destroy] do
+    resources :facebook, only: [:new]
+  end
 end
