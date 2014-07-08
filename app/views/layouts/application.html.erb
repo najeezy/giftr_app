@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GiftrApp</title>
+  <title>Giftr</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= link_to 'Giftr', root_path %>
+  <% if session[:current_user] %>
+    <%= link_to 'Profile', user_path(@user) %>
+    <%= link_to 'Logout', logout_path %>
+  <% end %>
+
 
 <%= yield %>
 
