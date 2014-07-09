@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate, only: [:show, :edit, :update, :destroy]
-  before_action :authorize, only: [:edit, :update, :destroy]
+  before_action :authenticate, only: [:feed, :show, :edit, :update, :destroy]
+  before_action :authorize, only: [:feed, :edit, :update, :destroy]
 
   def feed
     @user = User.find(params[:id])

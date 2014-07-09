@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     @user = username_validation = User.find_by(username: params[:username])
 
-    if @user && @user.autenticate(params[:password])
+    if @user && @user.authenticate(params[:password])
         session[:current_user] = @user.id
         @oauth = FBHelper.get_oauth_object(@user)
         redirect_to @oauth.url_for_oauth_code(:permissions => "user_friends")

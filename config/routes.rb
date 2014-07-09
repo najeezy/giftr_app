@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   # users
   get '/users/:id/feed' => 'users#feed', as: 'user_feed'
   resources :users, only: [:new, :show, :edit, :create, :update, :destroy] do
-      get '/fb_access'  => 'facebook#access_token'
+    get '/fb_access'  => 'facebook#access_token'
+    resources :friends, only: [:index, :create]
   end
+  resources :friends, only: [:destroy]
 
   # Test login
   get '/test_login'     => 'tests#new'
