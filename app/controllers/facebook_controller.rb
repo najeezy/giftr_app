@@ -1,8 +1,10 @@
 class FacebookController < ApplicationController
 
-  def new
-    user = User.find(params[:id])
-    user.fb_access_token = @oauth.get_access_token(params[:code])
+  def access_token
+    user = User.find(params[:user_id])
+    @oauth = FBHelper.get_oauth_object(user)
+    access_token = @oauth.get_access_token(params[:code])
+    user.update_attribute(:fb_access_token, access_token)
     redirect_to user_feed_path(user)
   end
 

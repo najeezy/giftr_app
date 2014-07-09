@@ -15,8 +15,8 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:current_user] = @user.id
-      @oauth = Koala::Facebook::OAuth.new(305510936292740, '59d7fcd67796896198c3c150d4b0ac5c', "http://localhost:3000/"+new_user_facebook_path(@user))
-      redirect @oauth.url_for_oauth_code
+      @oauth = FBHelper.get_oauth_object(@user)
+      redirect_to @oauth.url_for_oauth_code(:permissions => "user_friends")
     else
       render :new
     end

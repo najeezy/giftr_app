@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140708002437) do
+ActiveRecord::Schema.define(version: 20140709025505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,12 @@ ActiveRecord::Schema.define(version: 20140708002437) do
     t.text     "password_digest"
     t.string   "first_name"
     t.string   "last_name"
+    t.text     "small_image_url"
+    t.text     "large_image_url"
     t.text     "fb_access_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "facebook_id",     limit: 8
   end
 
 end

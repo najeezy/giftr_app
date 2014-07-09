@@ -10,7 +10,9 @@
   <%= link_to 'Giftr', root_path %>
   <% if session[:current_user] %>
     <%= link_to 'Profile', user_path(@user) %>
-    <%= link_to 'Logout', logout_path %>
+    <!-- <%= link_to 'Logout', logout_path %> -->
+    <hr>
+    <%= link_to 'Test Logout', test_logout_path %>
   <% end %>
 
 

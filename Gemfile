@@ -37,8 +37,12 @@ gem 'pry-rails'
 
 gem 'httparty'
 
+gem 'awesome_print'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-collection_matchers'
+  gem 'shoulda-matchers', require: false
 end
 
 # Use unicorn as the app server

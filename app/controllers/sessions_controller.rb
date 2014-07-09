@@ -3,11 +3,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if @user = User.find_by(username: params[:username])
-      if @user.authenticate(params[:password])
+    @user = username_validation = User.find_by(username: params[:username])
+
+    if @user && @user.autenticate(params[:password])
         session[:current_user] = @user.id
-        redirect_to user_feed_path(@user)
-      end
+        @oauth = FBHelper.get_oauth_object(@user)
+        redirect_to @oauth.url_for_oauth_code(:permissions => "user_friends")
     else
       @error = "Wrong username or password"
       render :new
@@ -15,7 +16,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    User.find(session[:current_user]).update_attribute(:fb_access_token, nil)
     session[:current_user] = nil
+
     redirect_to root_path
   end
 end
