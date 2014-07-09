@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :friendships
+  has_many :friends, through: :friendships
+
   has_secure_password
 
   validates :username, :first_name, :password, :password_confirmation, :last_name, presence: true
