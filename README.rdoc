@@ -1,28 +1,10 @@
-== README
+# Giftr
+General Assembly WDI Project I
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
+**Giftr** is a web application that allows users to request gifts for certain events, which their friends can choose to buy.
 
-Things you may want to cover:
+### ERD and User Stories
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* [ERD](https://www.lucidchart.com/documents/view/56418552-af69-4800-8446-cf28c95646bf)
+* [User Stories](https://trello.com/b/osqMFPwi)
