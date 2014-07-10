@@ -7,18 +7,18 @@ class FriendRequestsController < ApplicationController
   end
 
   def create
-    user = User.find(params[:user_id])
-    user.make_friend_request(User.find(params[:requester_id]))
-    redirect_to user_friend_requests_path(user)
+    main_user = current_user
+    main_user.make_friend_request(User.find(params[:user_id]))
+    redirect_to flash[:last_url]
   end
 
   def destroy
-    user = current_user
-    request = user.friend_requests.find(params[:id])
-    binding.pry
-    user.friend_requests.delete(request)
-    request.destroy
-    redirect_to user_friend_requests_path(user)
+    main_user = current_user
+    request = FriendRequest.find(params[:id])
+    if main_user.id = request.user_id || request.sender_id == main_user.id
+      request.destroy
+    end
+      redirect_to flash[:last_url]
   end
 
 end

@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = username_validation = User.find_by(username: params[:username])
+    @user = User.find_by(username: params[:username])
 
     if @user && @user.authenticate(params[:password])
         session[:current_user] = @user.id

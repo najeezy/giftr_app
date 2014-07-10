@@ -1,0 +1,17 @@
+<% main_user = current_user %>
+
+
+<% if request = main_user.friend_requests.find_by(sender_id: user.id.to_s) %>
+  <%= button_to 'Accept Request', user_friend_requests_path(user) %>
+  <%= button_to 'Deny', friend_request_path(request), method: :delete %>
+
+<% elsif request = user.friend_requests.find_by(sender_id: main_user.id.to_s) %>
+  <p>
+    Awaiting Approval
+    <%= link_to 'Cancel Request', friend_request_path(request), method: :delete %>
+  </p>
+
+<% elsif !main_user.friend?(user) %>
+  <%= button_to 'Add Friend', user_friend_requests_path(user) %>
+
+<% end %>

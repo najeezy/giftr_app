@@ -11,16 +11,16 @@ Rails.application.routes.draw do
   # users
   get '/users/:id/feed'         => 'users#feed', as: 'user_feed'
   resources :users,             only: [:new, :show, :edit, :create, :update, :destroy] do
-    resources :friends,           only: [:index, :create]
+    resources :friends,           only: [:index, :create] do
+      get '/search'               => 'friends#search', as: 'friends_search'
+    end
+
     resources :friend_requests,   only: [:index, :create]
     get '/fb_access'              => 'facebook#access_token'
   end
-  resources :friends,           only: [:destroy]
-  resources :friend_requests,   only: [:destroy] 
+  get '/fb_error'               => 'facebook#fb_user_error', as: 'fb_user_error'
 
-  # Test login
-  get '/test_login'             => 'tests#new'
-  resources :tests,             only: [:create]
-  get '/test_logout'            => 'tests#destroy'
+  resources :friends,           only: [:destroy]
+  resources :friend_requests,   only: [:destroy]
 
 end

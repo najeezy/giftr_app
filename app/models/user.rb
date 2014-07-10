@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 8 }
 
   def suggested_friends
-    fb_friends_list = FBHelper.get_fb_friends(self)
+    fb_friends_list = FBHelper.get_friends(self)
     fb_friends_list.map do |fb_friend_hash|
       friend_object = User.find_by(facebook_id: fb_friend_hash['id'].to_s)
     end
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def update_fb_id
-    self.update_attribute(:facebook_id, FBHelper.get_fb_id(self))
+    self.update_attribute(:facebook_id, FBHelper.get_id(self.fb_access_token))
   end
 
   def friend?(user)

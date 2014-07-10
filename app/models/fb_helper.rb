@@ -3,7 +3,7 @@ class FBHelper
     Koala::Facebook::OAuth.new(app_id, app_secret, "http://localhost:3000/users/#{user.id}/fb_access")
   end
 
-  def self.get_fb_friends(user)
+  def self.get_friends(user)
     graph = Koala::Facebook::API.new(user.fb_access_token)
     graph.get_connections('me', 'friends')
   end
@@ -24,8 +24,8 @@ class FBHelper
     image_urls
   end
 
-  def self.get_fb_id(user)
-    graph = Koala::Facebook::API.new(user.fb_access_token)
+  def self.get_id(access_token)
+    graph = Koala::Facebook::API.new(access_token)
     graph.get_object('me')['id'].to_i
   end
 

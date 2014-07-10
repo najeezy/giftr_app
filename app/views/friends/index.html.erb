@@ -2,7 +2,10 @@
 <hr>
 <ul>
   <% @suggested_friends.each do |friend| %>
-    <li><%= render partial: 'friend', locals: {user: friend} %></li>
+    <li>
+      <%= render partial: 'friend', locals: {user: friend} %>
+    </li>
+
     <hr>
   <% end %>
 </ul>

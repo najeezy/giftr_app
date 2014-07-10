@@ -1,11 +1,4 @@
 <%= image_tag user.small_image_url %>
 <h3><%= link_to user.first_name+" "+user.last_name, user_path(user) %></h3>
 <p><%= user.username %></p>
-
-<% if current_user.friend_requests.find_by(sender_id: user.id.to_s) %>
-  <%= button_to 'Accept Request', user_friend_requests_path(user) %>
-  <% request = current_user.friend_requests.find_by(sender_id: user.id.to_s) %>
-  <%= button_to 'Deny', friend_request_path(request), method: :delete %>
-<% elsif !current_user.friend?(user) %>
-  <%= button_to 'Add Friend' %>
-<% end %>
+<%= render partial: 'friends/friendoptions', locals: {user: user} %>

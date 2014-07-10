@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     if num_requests > 0
       @requests = "(#{num_requests})"
     end
+    flash[:last_url] = user_path(@user.id)
   end
 
   def edit
