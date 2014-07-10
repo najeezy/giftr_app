@@ -6,6 +6,7 @@
 <p>Member Since: <%= @user.created_at.to_formatted_s :long %></p>
 
 <% if @user.id == current_user.id %>
+  <%= link_to "#{@requests} Friend Requests", user_friend_requests_path(@user) %>
   <%= link_to 'Edit Profile', edit_user_path(@user) %>
   <%= link_to 'Delete Account', user_path(@user), method: :delete %>
 <% end %>

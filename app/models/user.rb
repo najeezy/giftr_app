@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :friendships
   has_many :friends, through: :friendships
+  has_many :friend_requests
 
   has_secure_password
 
@@ -28,6 +29,28 @@ class User < ActiveRecord::Base
 
   def update_fb_id
     self.update_attribute(:facebook_id, FBHelper.get_fb_id(self))
+  end
+
+  def friend?(user)
+    self.friends.include?(user)
+  end
+
+  def make_friend_request(user)
+    FriendRequest.create!({
+      sender_name: self.first_name+" "+self.last_name,
+      sender_id: self.id,
+      responded: false,
+      user_id: user.id
+    })
+  end
+
+  def accept_friend_request(request)
+    self.friends << User.find(request.sender_id)
+  end
+
+  def defriend(user)
+    user.friends.delete(self)
+    self.friends.delete(user)
   end
 
   # TEST METHODS

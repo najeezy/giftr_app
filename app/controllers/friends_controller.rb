@@ -8,8 +8,10 @@ class FriendsController < ApplicationController
   end
 
   def create
+
   end
 
   def destroy
   end
+
 end

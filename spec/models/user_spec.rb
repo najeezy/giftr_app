@@ -19,6 +19,9 @@ describe User do
 
   it { expect(najee).to be_valid }
 
+  it { is_expected.to have_many(:friends) }
+  it { is_expected.to have_many(:friend_requests)}
+
   it { is_expected.to validate_presence_of(:username) }
   it { is_expected.to validate_uniqueness_of(:username) }
 

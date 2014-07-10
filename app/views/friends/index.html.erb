@@ -2,12 +2,9 @@
 <hr>
 <ul>
   <% @suggested_friends.each do |friend| %>
-  <li>
-    <%= image_tag friend.small_image_url %>
-    <h3><%= friend.first_name %> <%= friend.last_name %></h3>
-    <p>Username: <%= friend.username %></p>
-
-  </li>
-  <hr>
+    <li><%= render partial: 'friend', locals: {user: friend} %></li>
+    <hr>
   <% end %>
 </ul>
+
+<h2>Friends</h2>

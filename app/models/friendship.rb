@@ -17,4 +17,5 @@ class Friendship < ActiveRecord::Base
       friendee.friends << friender
     end
   end
+
 end

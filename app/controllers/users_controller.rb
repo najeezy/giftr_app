@@ -24,6 +24,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    num_requests = @user.friend_requests.count
+    if num_requests > 0
+      @requests = "(#{num_requests})"
+    end
   end
 
   def edit
