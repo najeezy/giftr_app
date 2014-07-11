@@ -1,6 +1,8 @@
 class FBHelper
+
   def self.get_oauth_object(user)
-    Koala::Facebook::OAuth.new(app_id, app_secret, "http://localhost:3000/users/#{user.id}/fb_access")
+    url = ENV["app_url"]
+    Koala::Facebook::OAuth.new(app_id, app_secret, "#{url}users/#{user.id}/fb_access")
   end
 
   def self.get_friends(user)

@@ -41,6 +41,9 @@ gem 'awesome_print'
 
 gem 'ruby-hmac'
 
+gem 'figaro'
+
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'rspec-collection_matchers'
