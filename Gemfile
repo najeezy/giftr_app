@@ -39,11 +39,20 @@ gem 'httparty'
 
 gem 'awesome_print'
 
+gem 'ruby-hmac'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'rspec-collection_matchers'
   gem 'shoulda-matchers', require: false
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
+
+group :production do
+  gem 'rails_12factor'
+end
+
 
 # Use unicorn as the app server
 # gem 'unicorn'

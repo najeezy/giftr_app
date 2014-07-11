@@ -1,13 +1,18 @@
-<h2>Suggested Friends</h2>
-<hr>
-<ul>
-  <% @suggested_friends.each do |friend| %>
-    <li>
-      <%= render partial: 'friend', locals: {user: friend} %>
-    </li>
+<%= link_to 'All Users', user_friend_search_path(current_user) %>
 
-    <hr>
-  <% end %>
-</ul>
+<h2>Suggested Friends</h2>
+
+<hr>
+<% @suggested_friends.each do |friend| %>
+  <%= render partial: 'friend', locals: {user: friend} %>
+<hr>
+<% end %>
+
 
 <h2>Friends</h2>
+
+<hr>
+<% @user.friends.each do |friend| %>
+  <%= render partial: 'friend', locals: {user: friend} %>
+<hr>
+<% end %>

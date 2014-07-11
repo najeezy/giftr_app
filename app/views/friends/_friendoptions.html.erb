@@ -2,7 +2,7 @@
 
 
 <% if request = main_user.friend_requests.find_by(sender_id: user.id.to_s) %>
-  <%= button_to 'Accept Request', user_friend_requests_path(user) %>
+  <%= button_to 'Accept Request', user_friends_path(user) %>
   <%= button_to 'Deny', friend_request_path(request), method: :delete %>
 
 <% elsif request = user.friend_requests.find_by(sender_id: main_user.id.to_s) %>

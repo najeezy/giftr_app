@@ -3,10 +3,10 @@ class FriendsController < ApplicationController
   before_action :authorize, only: [:index]
 
   def index
-    user = User.find(params[:user_id])
-    @suggested_friends = user.suggested_friends
+    @user = current_user
+    @suggested_friends = @user.suggested_friends.reject { |user| @user.friends.include?(user) }
 
-    flash[:last_url] = user_friends_path(user)
+    flash[:last_url] = user_friends_path(@user)
   end
 
   def create
@@ -25,7 +25,7 @@ class FriendsController < ApplicationController
   end
 
   def search
-    @users = Users.all
+    @users = User.all
   end
 
 end

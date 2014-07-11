@@ -1,9 +1,13 @@
 class FriendRequestsController < ApplicationController
   before_action :authenticate
-  # before_action :authorize
+  before_action :authorize, only: [:index]
 
   def index
-    @requests = current_user.friend_requests
+    main_user = current_user
+    @requests = main_user.friend_requests
+    @frienders = @requests.map { |request| User.find(request.sender_id) }
+
+    flash[:last_url] = user_friend_requests_path(main_user)
   end
 
   def create

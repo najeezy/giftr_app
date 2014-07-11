@@ -1,5 +1,7 @@
 <h3>All Users</h3>
 
+<hr>
 <% @users.each do |user| %>
-  <%= render %>
+  <%= render partial: 'friend', locals: {user: user} %>
+  <hr>
 <% end %>

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
   validates :password, length: { minimum: 8 }
 
+  before_create :friend_back
+
   def suggested_friends
     fb_friends_list = FBHelper.get_friends(self)
     fb_friends_list.map do |fb_friend_hash|
@@ -39,13 +41,13 @@ class User < ActiveRecord::Base
     FriendRequest.create!({
       sender_name: self.first_name+" "+self.last_name,
       sender_id: self.id,
-      responded: false,
       user_id: user.id
     })
   end
 
   def accept_friend_request(request)
     self.friends << User.find(request.sender_id)
+    request.destroy
   end
 
   def defriend(user)
@@ -55,10 +57,10 @@ class User < ActiveRecord::Base
 
   # TEST METHODS
 
-  # def get_fb_credentials
-  #   test_users = Koala::Facebook::TestUsers.new(app_id: FBHelper.app_id, secret: FBHelper.app_secret)
-  #
-  #   test_users.list
-  # end
+  def get_fb_credentials
+    test_users = Koala::Facebook::TestUsers.new(app_id: FBHelper.app_id, secret: FBHelper.app_secret)
+
+    test_users.list
+  end
 
 end

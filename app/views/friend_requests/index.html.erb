@@ -1,0 +1,12 @@
+<% if @requests.count == 0 %>
+  <h2>No Friend Requests</h2>
+
+<% else %>
+<h2>Friend Requests</h2>
+<hr>
+  <% @frienders.each do |friender| %>
+    <%= render partial: 'friends/friend', locals: {user: friender} %>
+<hr>
+  <% end %>
+
+<% end %>

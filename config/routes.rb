@@ -11,9 +11,8 @@ Rails.application.routes.draw do
   # users
   get '/users/:id/feed'         => 'users#feed', as: 'user_feed'
   resources :users,             only: [:new, :show, :edit, :create, :update, :destroy] do
-    resources :friends,           only: [:index, :create] do
-      get '/search'               => 'friends#search', as: 'friends_search'
-    end
+    resources :friends,           only: [:index, :create]
+    get 'friends/search'               => 'friends#search', as: 'friend_search'
 
     resources :friend_requests,   only: [:index, :create]
     get '/fb_access'              => 'facebook#access_token'
