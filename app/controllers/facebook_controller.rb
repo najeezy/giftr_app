@@ -8,8 +8,10 @@ class FacebookController < ApplicationController
     fb_id = FBHelper.get_id(access_token)
     redirect_url = user_feed_path(user)
 
+    user.update_attribute(:fb_access_token, access_token)
+
     if flash['last_url'] == sessions_path
-      user.update_attribute(:fb_access_token, access_token)
+
 
       if fb_id != user.facebook_id
         redirect_url = fb_user_error_path
