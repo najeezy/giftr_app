@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: giftr_app_production
-  username: giftr_app
+  # username: giftr_app
   password: <%= ENV['GIFTR_APP_DATABASE_PASSWORD'] %>
