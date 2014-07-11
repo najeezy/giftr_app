@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
         session[:current_user] = @user.id
         @oauth = FBHelper.get_oauth_object(@user)
+        flash['last_url'] = sessions_path
         redirect_to @oauth.url_for_oauth_code(:permissions => "user_friends")
     else
       @error = "Wrong username or password"
