@@ -9,12 +9,10 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
   validates :password, length: { minimum: 8 }
 
-  before_create :friend_back
-
   def suggested_friends
     fb_friends_list = FBHelper.get_friends(self)
     fb_friends_list.map do |fb_friend_hash|
-      friend_object = User.find_by(facebook_id: fb_friend_hash['id'].to_s)
+      User.find_by(facebook_id: fb_friend_hash['id'].to_s)
     end
   end
 
