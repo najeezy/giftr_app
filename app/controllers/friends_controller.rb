@@ -5,6 +5,7 @@ class FriendsController < ApplicationController
   def index
     @user = current_user
     @suggested_friends = @user.suggested_friends.reject { |user| @user.friends.include?(user) }
+    @suggested_friends = @suggested_friends.reject { |user| user.nil? }
 
     flash[:last_url] = user_friends_path(@user)
   end
