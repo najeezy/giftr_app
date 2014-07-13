@@ -5,7 +5,7 @@ describe User do
                             password_confirmation: 'apple123',
                             first_name: 'Najee', last_name: 'Gardner',
                             facebook_id: 10204641147254238,
-                            fb_access_token: 'CAAEV3E7VLYQBABkBc7qO5cuPB6ZCiCfZCWQNiHKyYC5iZAzIukfiZCO0MYTf6tRYH61AjDtDZCVUYckjr9Wzf5KZAjpaWL82OaR5PLG520Bd3ZBEPJZBXAQ5Hz6tl0nQxSNKC4MBLxxwvnudCO2w6fmGZAldE2AJUCkVZBfa3vFZBOSj3Q2Cf6VL3pNKPdpNZC5WGjoZD'}
+                            fb_access_token: ENV['TEST_FB_ACCESS_TOKEN']}
 
   let(:alex) { User.create! username: 'alevine', password: 'apple123',
                             password_confirmation: 'apple123',

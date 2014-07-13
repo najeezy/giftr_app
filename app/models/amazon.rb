@@ -11,7 +11,7 @@ class Amazon
       item = Hash.new
       item[:name] = info['Title']
       item[:category] = info['Binding'] ? info['Binding'] : "None"
-      item[:price] = info['ListPrice'] ? info['ListPrice']['FormattedPrice'] : "$0.00"
+      item[:price] = info['ListPrice'] ? info['ListPrice']['Amount'].to_i : 0
       item[:small_image_url] = item_hash['SmallImage']['URL']
       item[:large_image_url] = item_hash['LargeImage']['URL']
       item[:amazon_url] = item_hash['DetailPageURL']

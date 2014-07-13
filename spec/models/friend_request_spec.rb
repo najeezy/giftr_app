@@ -3,7 +3,6 @@ require 'rails_helper'
 describe FriendRequest do
 
   it { is_expected.to validate_presence_of(:sender_id) }
-  it { is_expected.to validate_presence_of(:responded) }
   it { is_expected.to validate_presence_of(:user_id) }
   it { is_expected.to validate_presence_of(:sender_name) }
 
