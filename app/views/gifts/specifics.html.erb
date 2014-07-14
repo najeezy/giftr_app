@@ -1,0 +1,21 @@
+<h2>Add Specifics</h2>
+
+<p>Is there a certain color or size you want?</p>
+<p>How many punches will you be suffering through this year?</p>
+<p>This is the place to add that sort of info.</p>
+
+<%= form_for @gift do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :category %>
+  <%= f.hidden_field :price %>
+  <%= f.hidden_field :small_image_url %>
+  <%= f.hidden_field :large_image_url %>
+  <%= f.hidden_field :amazon_url %>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :event_id %>
+
+  <%= f.label :specifics %>
+  <%= f.text_area :specifics %>
+
+  <%= f.submit 'Add Specifics' %>
+<% end %>

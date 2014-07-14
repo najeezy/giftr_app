@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140713122255) do
+ActiveRecord::Schema.define(version: 20140714042053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buyers", force: true do |t|
+    t.integer "purchaser_id"
+    t.string  "purchaser_type"
+  end
+
+  create_table "buyers_news", force: true do |t|
+    t.integer "purchaser_id"
+    t.string  "purchaser_type"
+  end
 
   create_table "events", force: true do |t|
     t.string   "title"
@@ -47,12 +57,12 @@ ActiveRecord::Schema.define(version: 20140713122255) do
     t.text     "large_image_url"
     t.text     "amazon_url"
     t.text     "specifics"
-    t.boolean  "status"
     t.integer  "user_id"
     t.integer  "event_id"
     t.integer  "buyer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
   end
 
   create_table "users", force: true do |t|

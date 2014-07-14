@@ -1,0 +1,23 @@
+<% if gift.buyer %>
+  <% buyer = gift.buyer.purchaser %>
+<% else %>
+  <% buyer = nil %>
+<% end %>
+<% user = current_user %>
+
+<% if user == buyer %>
+  <p>You are Giftr</p>
+  <%= button_to 'Cancel', gift_cancel_path(gift), method: :delete %>
+
+<% elsif gift.claimed? %>
+  <%= image_tag buyer.small_image_url %>
+  <p>Claimed by: <%= buyer.first_name %></p>
+
+<% elsif current_user.friend?(gift.user) %>
+  <% if gift.cancelled? %>
+    <p>Buyer Cancelled!</p>
+
+  <% end %>
+  <%= button_to 'Claim', gift_claim_path(gift), method: :put %>
+
+<% end %>

@@ -2,21 +2,60 @@
 <html>
 <head>
   <title>Giftr</title>
+  <%= stylesheet_link_tag    'assets/reset' %>
+  <%= stylesheet_link_tag    'assets/skeleton' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= link_to 'Giftr', root_path %>
+<% main_user = current_user %>
+<div class='header'>
+  <div class="container">
+    <div class='sixteen columns'>
+      <div class='logo four columns omega'>
+        <%= link_to 'Giftr', root_path %>
+      </div>
+
+      <% if session[:current_user] %>
+        <div class='profile_links twelve columns alpha'>
+          <%= image_tag main_user.small_image_url %>
+          <%= link_to 'Profile', user_path(main_user) %>
+          <%= link_to 'Logout', logout_path %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class='thirteen columns'>
+    <%= yield %>
+  </div>
+
+  <nav class='three columns'>
   <% if session[:current_user] %>
-    <%= link_to 'Profile', user_path(current_user) %>
-    <%= link_to 'Friends', user_friends_path(current_user) %>
-    <%= link_to 'Logout', logout_path %>
-    <hr>
-  <% end %>
+    <div>
+      <%= link_to 'Friends', user_friends_path(main_user) %>
+    </div>
+    <div>
+      <%= link_to 'Events', user_events_path(main_user) %>
+    </div>
+    <div>
+      <%= link_to 'Gifts', user_gifts_path(main_user) %>
+    </div>
+    <div class='friend_request'>
+      <% if main_user.friend_requests.count > 0 %>
+        <% num_requests = "(#{main_user.friend_requests.count}) " %>
+      <% end %>
+
+      <%= link_to "#{num_requests}Friend Requests", user_friend_requests_path(main_user) %>
+    </div>
+  <% end%>
+  </nav>
 
 
-<%= yield %>
+</div>
 
 </body>
 </html>

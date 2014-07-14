@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      @user.buyer = Buyer.create
       session[:current_user] = @user.id
       @oauth = FBHelper.get_oauth_object(@user)
       redirect_to @oauth.url_for_oauth_code(:permissions => "user_friends")

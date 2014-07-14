@@ -1,0 +1,38 @@
+<h2>Results for '<%= @search_term %>'</h2>
+
+<%= form_tag gifts_search_path, method: :get do %>
+  <%= label_tag :search_term, 'Search Again' %>
+  <%= text_field_tag :search_term, nil, placeholder: 'enter search term' %>
+
+  <%= submit_tag 'Search' %>
+<% end %>
+
+<% @results.each do |item| %>
+  <div class="search_result">
+    <%= image_tag item[:large_image_url] %>
+    <h3><%= item[:name] %></h3>
+    <p><%= item[:category] %></p>
+    <% if item[:price] != 0 %>
+      <p>List Price: $<%= item[:price].to_s.insert(-3, '.') %></p>
+    <% end %>
+
+    <%= form_tag user_gifts_path(@user) do %>
+      <%= hidden_field_tag 'gift[name]', item[:name] %>
+      <%= hidden_field_tag 'gift[category]', item[:category] %>
+      <%= hidden_field_tag 'gift[price]', item[:price] %>
+      <%= hidden_field_tag 'gift[small_image_url]', item[:small_image_url] %>
+      <%= hidden_field_tag 'gift[large_image_url]', item[:large_image_url] %>
+      <%= hidden_field_tag 'gift[amazon_url]', item[:amazon_url] %>
+      <%= hidden_field_tag 'gift[status]', 'unclaimed' %>
+      <% if @selected_event_id %>
+        <%= select_tag 'gift[event_id]', options_for_select(@events_select, @selected_events_id) %>
+      <% else %>
+        <%= select_tag 'gift[event_id]', options_for_select(@events_select) %>
+      <% end %>
+
+      <%= submit_tag 'Add Gift' %>
+    <% end %>
+
+    <%= link_to 'View on Amazon.com', item[:amazon_url], target: '_blank' %>
+  </div>
+<% end %>

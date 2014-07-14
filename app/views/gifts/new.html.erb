@@ -1,0 +1,15 @@
+<% if @message_from_event %>
+  <h2><%= @message_from_event %></h2>
+  <h3><%= @event.title %></h3>
+  <p><%= @event.fdate %></p>
+<% end %>
+
+<h3>Search for a Gift</h3>
+
+<%= @error %>
+
+<%= form_tag gifts_search_path, method: :get do %>
+  <%= text_field_tag :search_term %>
+
+  <%= submit_tag 'Search' %>
+<% end %>

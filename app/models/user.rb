@@ -2,12 +2,21 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :friend_requests
+  has_many :events
+  has_many :gifts
+  has_one  :buyer, as: :purchaser
 
   has_secure_password
 
   validates :username, :first_name, :password, :password_confirmation, :last_name, presence: true
   validates :username, uniqueness: true
   validates :password, length: { minimum: 8 }
+
+  before_create :downcase_username
+
+  def downcase_username
+    self.username = self.username.downcase
+  end
 
   def suggested_friends
     fb_friends_list = FBHelper.get_friends(self)

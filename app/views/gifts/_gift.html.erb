@@ -1,0 +1,8 @@
+<div class='gift'>
+  <%= image_tag gift.small_image_url %>
+  <h3><%= link_to gift.name, gift_path(gift) %></h3>
+  <p><%= gift.event.title %></p>
+  <p><%= gift.event.fdate %></p>
+
+  <%= render partial: 'gifts/buygiftoptions', locals: {gift: gift} %>
+</div>

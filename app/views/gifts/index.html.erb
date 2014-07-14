@@ -1,0 +1,22 @@
+<h2>Current Gifts:</h2>
+
+<% if session[:current_user] == params[:user_id].to_i %>
+  <%= link_to 'New Gift', new_user_gift_path(current_user) %>
+
+<% end %>
+
+<% if @events.first %>
+
+  <% @events.each do |event| %>
+    <%= link_to event.title, event_path(event) %>
+    <% event.gifts.each do |gift| %>
+      <li>
+        <%= render partial: 'gift', locals: {gift: gift} %>
+      </li>
+    <% end %>
+  <% end %>
+
+<% else %>
+  <p>You don't have any events</p>
+
+<% end %>

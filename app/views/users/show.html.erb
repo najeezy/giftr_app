@@ -7,10 +7,11 @@
 
 <% main_user = current_user %>
 <% if @user.id == main_user.id %>
-  <%= link_to "#{@requests} Friend Requests", user_friend_requests_path(@user) %>
   <%= link_to 'Edit Profile', edit_user_path(@user) %>
   <%= link_to 'Delete Account', user_path(@user), method: :delete %>
 <% elsif @user.friends.include?(main_user) %>
+  <%= link_to 'View Gifts', user_gifts_path(@user) %>
+
   <%= link_to 'Remove Friend', friend_path(@user), method: :delete %>
 <% else %>
   <%= render partial: 'friends/friendoptions', locals: {user: @user} %>

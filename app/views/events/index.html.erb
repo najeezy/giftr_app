@@ -1,0 +1,9 @@
+<h2>Events</h2>
+
+<div class="new_event">
+  <%= link_to 'New Event', new_user_event_path %>
+</div>
+
+<% @events.each do |event| %>
+  <%= render partial: 'event', locals: {event: event} %>
+<% end %>

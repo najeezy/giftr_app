@@ -1,0 +1,11 @@
+<h2><%= @event.title %></h2>
+<p>Event Date: <%= @event.fdate %></p>
+
+<% @event.gifts.each do |gift| %>
+  <%= render partial: 'gifts/gift', locals: {gift: gift} %>
+<% end %>
+
+<% if @event.user.id == session[:current_user] %>
+  <%= link_to 'Edit', edit_event_path(@event) %>
+  <%= link_to 'Delete Event (and Gifts)', event_path(@event), method: :delete %>
+<% end %>

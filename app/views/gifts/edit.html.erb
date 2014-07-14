@@ -1,0 +1,29 @@
+<h2>Edit Gift</h2>
+
+<%= form_for @gift do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :category %>
+  <%= f.text_field :category %>
+
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+
+  <%= f.label :specifics %>
+  <%= f.text_area :specifics %>
+
+  <%= f.label :event_id %>
+  <%= f.collection_select :event_id, @gift.user.events, :id, :title %>
+
+  <%= f.hidden_field :user_id %>
+
+  <% if @gift.buyer_id %>
+    <%= f.hidden_field :buyer_id %>
+  <% end %>
+
+  <%= f.hidden_field :status %>
+
+  <%= f.submit %>
+
+<% end %>

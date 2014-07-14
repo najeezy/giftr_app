@@ -1,0 +1,23 @@
+<% if @gift.user.id != session[:current_user] %>
+  <%= image_tag @gift.user.small_image_url %>
+  <p><%= @gift.user.first_name %> would love to recieve this for:</p>
+  <p><%= @gift.event.title %></p>
+  <p>Event Date: <%= @gift.event.fdate %></p>
+<% end %>
+
+<h2><%= @gift.name %></h2>
+
+<%= image_tag @gift.large_image_url %>
+
+<p><%= @gift.category %></p>
+<p>$<%= @gift.price.to_s.insert(-3,'.') %></p>
+<p><%= @gift.specifics %></p>
+
+<% if @gift.user.id == session[:current_user] %>
+  <%= link_to 'Edit', edit_gift_path(@gift) %>
+  <%= link_to 'Delete', gift_path(@gift), method: :delete %>
+<% elsif @gift.user.friend?(current_user) %>
+  <%= render partial: 'buygiftoptions', locals: {gift: @gift} %>
+<% end %>
+
+<%= link_to 'View on Amazon.com', @gift.amazon_url, target: '_blank' %>

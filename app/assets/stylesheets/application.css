@@ -13,3 +13,49 @@
  *= require_tree .
  *= require_self
  */
+
+/*---------------*/
+/*   Navgation   */
+/*---------------*/
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+div.header {
+  height: 70px;
+  background: #CC4235;
+}
+
+div.container {
+
+}
+
+div.logo a {
+  text-decoration: none;
+  color: white;
+  font-size: 40px;
+}
+
+div.profile_links {
+  text-align: right;
+  padding-top: 10px;
+}
+
+nav {
+  background: #8C2E25;
+  padding: 40px 0;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 100%;
+
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  padding-left: 10px;
+}
+
+nav div.friend_request {
+  margin-top: 20px;
+}

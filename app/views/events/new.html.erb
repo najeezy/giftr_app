@@ -1,0 +1,27 @@
+
+<h2>New Event</h2>
+
+<% if @event.errors.count > 0 %>
+<ul>
+  <% if @event.errors.full_messages.include?("Title can't be blank") %>
+    <li><%= @event.errors.full_messages.first %></li>
+  <% end %>
+
+  <% if @event.errors.full_messages.include?("Date can't be blank") %>
+    <li><%= @error_message %></li>
+  <% end %>
+<ul>
+<% end %>
+
+<%= form_for @event, url: user_events_path do |f| %>
+  <%= f.label :title, 'Event Title' %>
+  <%= f.text_field :title, placeholder: 'enter title' %>
+
+  <%= f.label :date, 'Event Date' %>
+  <%= f.date_field :date, placeholder: 'mm/dd/yyyy' %>
+
+  <%= f.submit %>
+
+<% end %>
+
+<%= link_to 'Cancel', user_events_path %>
