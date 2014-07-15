@@ -10,7 +10,9 @@
       <h3>You don't have any friends with events. I'm sorry...</h3>
     <% end %>
 
-    <%= render partial: 'events/event', locals: {event: @next_event} %>
+    <% if current_user.events != 0 %>
+      <%= render partial: 'events/event', locals: {event: @next_event} %>
+    <% end %>
 
   <% else %>
 
