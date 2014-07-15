@@ -17,7 +17,9 @@
   <% else %>
 
     <% @upcoming_events.each do |event| %>
+      <% if current_user.events != 0 %>
       <%= render partial: 'events/event', locals: {event: event} %>
+      <% end %>
     <% end %>
 
   <% end %>
