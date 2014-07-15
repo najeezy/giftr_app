@@ -17,6 +17,7 @@
 /*---------------*/
 /*   Navgation   */
 /*---------------*/
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -25,10 +26,6 @@ body {
 div.header {
   height: 70px;
   background: #CC4235;
-}
-
-div.container {
-
 }
 
 div.logo a {
@@ -47,7 +44,6 @@ nav {
   padding: 40px 0;
   border-radius: 0 0 20px 20px;
   margin-bottom: 100%;
-
 }
 
 nav a {
@@ -56,6 +52,84 @@ nav a {
   padding-left: 10px;
 }
 
+nav p:hover {
+  background: #4D1914;
+}
+
+nav div.bottom_link {
+  margin-bottom: 25px;
+}
+
 nav div.friend_request {
+  margin-top: 25px;
+}
+
+/*---------------*/
+/*    dialogs    */
+/*---------------*/
+
+div.register {
+  text-align: center;
+}
+
+div.dialog {
+  width: 500px;
+  display: inline-block;
+  background: #7C8BBF;
+  margin-top: 50px;
+  padding: 20px 20px 30px 20px;
+}
+
+div.dialog h2 {
+  font-size: 20px;
+}
+
+div.button_link {
+  margin-top: 25px;
+}
+
+div.button_link a {
+  padding: 10px 40px;
+  background: #CC4235;
+  border-bottom: 4px solid #8C2E25;
+  border-radius: 5px;
+
+  text-decoration: none;
+  color: #6B231C;
+  font-size: 25px;
+}
+
+div.button_link a:hover {
+  color: white;
+}
+
+div.button_link a:active {
+  color: white;
+  background: #8C2E25;
+}
+
+
+/*---------------*/
+/*     gifts     */
+/*---------------*/
+
+div.gift img {
+  max-width: 40px;
+
+}
+
+div.search_result {
+  width: 700px;
+}
+
+div.search_result div.search_image img {
+  max-height: 200px;
+}
+
+hr.top_search_border {
+  margin-top: 50px;
+}
+
+h2.results_heading {
   margin-top: 20px;
 }

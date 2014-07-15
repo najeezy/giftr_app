@@ -35,7 +35,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     flash['event_id'] = @event.id
-    flash['last_url'] = event_path(@event)
+    flash[:last_url] = event_path(@event)
   end
 
   def edit
@@ -65,11 +65,11 @@ class EventsController < ApplicationController
   def destroy
     event = Event.find(params[:id])
 
-    if session[:current_user] == event.user
+    if session[:current_user] == event.user.id
       event.destroy
     end
 
-    redirect_to user_events(current_user)
+    redirect_to user_events_path(current_user)
   end
 
   def event_params

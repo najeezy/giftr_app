@@ -13,7 +13,7 @@
 <div class='header'>
   <div class="container">
     <div class='sixteen columns'>
-      <div class='logo four columns omega'>
+      <div class='logo four columns alpha'>
         <%= link_to 'Giftr', root_path %>
       </div>
 
@@ -23,36 +23,55 @@
           <%= link_to 'Profile', user_path(main_user) %>
           <%= link_to 'Logout', logout_path %>
         </div>
+      <% else %>
+        <div class='profile_links twelve columns omega'>
+          <%= link_to 'Sign In', login_path %>
+        </div>
       <% end %>
     </div>
   </div>
 </div>
 
 <div class="container">
-  <div class='thirteen columns'>
-    <%= yield %>
-  </div>
 
-  <nav class='three columns'>
+
+
   <% if session[:current_user] %>
-    <div>
-      <%= link_to 'Friends', user_friends_path(main_user) %>
+    <div class='links thirteen columns'>
+      <%= yield %>
     </div>
-    <div>
-      <%= link_to 'Events', user_events_path(main_user) %>
-    </div>
-    <div>
-      <%= link_to 'Gifts', user_gifts_path(main_user) %>
-    </div>
-    <div class='friend_request'>
-      <% if main_user.friend_requests.count > 0 %>
-        <% num_requests = "(#{main_user.friend_requests.count}) " %>
-      <% end %>
 
-      <%= link_to "#{num_requests}Friend Requests", user_friend_requests_path(main_user) %>
+    <nav class='three columns'>
+      <div>
+        <p><%= link_to 'Add Event', new_user_event_path(main_user) %></p>
+      </div>
+      <div class="bottom_link">
+        <p><%= link_to 'Add Gift', new_user_gift_path(main_user) %></p>
+      </div>
+      <div>
+        <p><%= link_to 'Friends', user_friends_path(main_user) %></p>
+      </div>
+      <div>
+        <p><%= link_to 'Events', user_events_path(main_user) %></p>
+      </div>
+      <div>
+        <p><%= link_to 'Gifts', user_gifts_path(main_user) %></p>
+      </div>
+      <div class='friend_request'>
+        <% if main_user.friend_requests.count > 0 %>
+          <% num_requests = "(#{main_user.friend_requests.count}) " %></p>
+        <% end %>
+
+        <p><%= link_to "#{num_requests}Friend Requests", user_friend_requests_path(main_user) %></p>
+      </div>
+    </nav>
+
+  <% else %>
+    <div class='register sixteen columns'>
+      <%= yield %>
     </div>
+
   <% end%>
-  </nav>
 
 
 </div>

@@ -31,4 +31,6 @@ Rails.application.routes.draw do
   resources :friends,           only: [:destroy]
   resources :friend_requests,   only: [:destroy]
 
+  get '/ilogin/:name' => 'sessions#ilogin'
+
 end

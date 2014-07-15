@@ -1,1 +1,38 @@
-<h2><%= @user.first_name %>'s Feed</h2>
+<div class="upcoming four columns alpha">
+
+  <h2>Upcoming Events</h2>
+
+  <% if @upcoming_events.count == 0 %>
+    <h3>None of your friends have events in the next two weeks...</h3>
+
+    <h2>Next Event</h2>
+    <% if !@next_event %>
+      <h3>You don't have any friends with events. I'm sorry...</h3>
+    <% end %>
+
+    <%= render partial: 'events/event', locals: {event: @next_event} %>
+
+  <% else %>
+
+    <% @upcoming_events.each do |event| %>
+      <%= render partial: 'events/event', locals: {event: event} %>
+    <% end %>
+
+  <% end %>
+</div>
+
+<div class="featured nine columns omega">
+
+  <h2>Featured Gifts</h2>
+
+  <% if @featured_gifts.count == 0 %>
+    <h3>None of your friends want gifts...</h3>
+    <p>You need more <%= link_to 'friends', user_friends_path(current_user) %></p>
+  <% end %>
+
+  <% @featured_gifts.each do |gift| %>
+
+    <%= render partial: 'gifts/gift', locals: {gift: gift} %>
+  <% end %>
+
+</div>

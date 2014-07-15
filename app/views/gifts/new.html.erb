@@ -6,6 +6,10 @@
 
 <h3>Search for a Gift</h3>
 
+<% if current_user.events.count == 0 %>
+  <h2>You will need to add an event before you can add a gift.</h2>
+<% end %>
+
 <%= @error %>
 
 <%= form_tag gifts_search_path, method: :get do %>

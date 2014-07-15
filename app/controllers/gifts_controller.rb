@@ -27,7 +27,7 @@ class GiftsController < ApplicationController
 
   def show
     @gift = Gift.find(params[:id])
-    flash['last_url'] = gift_path(@gift)
+    flash[:last_url] = gift_path(@gift)
   end
 
   def edit
@@ -63,10 +63,11 @@ class GiftsController < ApplicationController
 
     if user.friends.include?(gift.user)
       gift.buyer = user.buyer
+      gift.status = 'claimed'
       gift.save
     end
 
-    redirect_to flash['last_url']
+    redirect_to flash[:last_url]
   end
 
   def cancel
@@ -79,7 +80,7 @@ class GiftsController < ApplicationController
       gift.save
     end
 
-    redirect_to flash['last_url']
+    redirect_to flash[:last_url]
   end
 
   def search

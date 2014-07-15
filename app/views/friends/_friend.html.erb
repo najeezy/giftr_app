@@ -1,4 +1,17 @@
-<%= image_tag user.small_image_url %>
-<h3><%= link_to user.first_name+" "+user.last_name, user_path(user) %></h3>
-<p><%= user.username %></p>
-<%= render partial: 'friends/friendoptions', locals: {user: user} %>
+<div class="friend thirteen columns">
+  <div class='two columns alpha'>
+    <%= image_tag user.small_image_url %>
+  </div>
+
+  <div class 'five columns'>
+    <h3><%= link_to user.first_name+" "+user.last_name, user_path(user) %></h3>
+    <span><%= user.username %></span>
+    <span><%= user.gifts.count.to_s %> Gifts</span>
+
+
+  </div>
+
+  <div class='seven columns omega'>
+    <%= render partial: 'friends/friendoptions', locals: {user: user} %>
+  </div>
+</div>

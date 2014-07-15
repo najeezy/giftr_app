@@ -1,8 +1,16 @@
-<div class='gift'>
-  <%= image_tag gift.small_image_url %>
-  <h3><%= link_to gift.name, gift_path(gift) %></h3>
-  <p><%= gift.event.title %></p>
-  <p><%= gift.event.fdate %></p>
+<div class='gift nine columns'>
+  <div class='one columns alpha'>
+    <%= image_tag gift.small_image_url %>
+  </div>
 
-  <%= render partial: 'gifts/buygiftoptions', locals: {gift: gift} %>
+  <div class='six columns'>
+    <h3><%= link_to gift.name, gift_path(gift) %></h3>
+    <p><%= gift.event.title %></p>
+    <p><%= gift.event.fdate %></p>
+  </div>
+
+  <div class='two columns omega'>
+    <%= render partial: 'gifts/buygiftoptions', locals: {gift: gift} %>
+  </div>
+
 </div>

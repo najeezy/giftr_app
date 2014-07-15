@@ -3,7 +3,28 @@ class UsersController < ApplicationController
   before_action :authorize, only: [:feed, :edit, :update, :destroy]
 
   def feed
-    @user = User.find(params[:id])
+    @user = current_user
+
+    gifts_without_buyers = []
+    @upcoming_events = []
+    @next_event = nil
+
+    @user.friends.each do |friend|
+      gifts_without_buyers += friend.gifts.reject { |gift| gift.buyer }
+
+      @upcoming_events += friend.events.reject do |event|
+        @next_event = event
+
+        if event.date < @next_event.date && event.date >= Date.today
+          @next_event = event
+        end
+
+        event.date < Date.today || event.date > 14.days.from_now
+      end
+    end
+
+    @featured_gifts = gifts_without_buyers.sample(3)
+    flash[:last_url] = user_feed_path(@user)
   end
 
   def new

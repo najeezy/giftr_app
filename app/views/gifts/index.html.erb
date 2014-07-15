@@ -4,16 +4,20 @@
   <%= link_to 'New Gift', new_user_gift_path(current_user) %>
 
 <% end %>
+<br>
+<br>
+
 
 <% if @events.first %>
 
   <% @events.each do |event| %>
-    <%= link_to event.title, event_path(event) %>
+
     <% event.gifts.each do |gift| %>
-      <li>
+
         <%= render partial: 'gift', locals: {gift: gift} %>
-      </li>
+
     <% end %>
+
   <% end %>
 
 <% else %>

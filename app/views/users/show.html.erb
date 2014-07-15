@@ -11,7 +11,7 @@
   <%= link_to 'Delete Account', user_path(@user), method: :delete %>
 <% elsif @user.friends.include?(main_user) %>
   <%= link_to 'View Gifts', user_gifts_path(@user) %>
-
+  <%= link_to 'View Events', user_events_path(@user) %>
   <%= link_to 'Remove Friend', friend_path(@user), method: :delete %>
 <% else %>
   <%= render partial: 'friends/friendoptions', locals: {user: @user} %>

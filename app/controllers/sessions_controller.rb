@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
         session[:current_user] = @user.id
         @oauth = FBHelper.get_oauth_object(@user)
-        flash['last_url'] = sessions_path
+        flash[:last_url] = sessions_path
         redirect_to @oauth.url_for_oauth_code(:permissions => "user_friends")
     else
       @error = "Wrong username or password"
@@ -21,5 +21,10 @@ class SessionsController < ApplicationController
     session[:current_user] = nil
 
     redirect_to root_path
+  end
+
+  def ilogin
+    session[:current_user] = User.find_by(first_name: params[:name]).id
+    redirect_to user_feed_path(User.find_by(first_name: params[:name]))
   end
 end

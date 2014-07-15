@@ -26,7 +26,9 @@ class FriendsController < ApplicationController
   end
 
   def search
-    @users = User.all.reject { |user| user == current_user }
+    main_user = current_user
+    @users = User.all.reject { |user| user == main_user }
+    flash[:last_url] = user_friend_search_path(main_user)
   end
 
 end
