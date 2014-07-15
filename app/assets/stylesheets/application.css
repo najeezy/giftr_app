@@ -124,6 +124,7 @@ div.search_result {
 
 div.search_result div.search_image img {
   max-height: 200px;
+  max-width: 150px;
 }
 
 hr.top_search_border {
