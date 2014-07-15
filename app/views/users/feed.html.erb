@@ -10,16 +10,16 @@
       <h3>You don't have any friends with events. I'm sorry...</h3>
     <% end %>
 
-
+    <% if @next_event %>
       <%= render partial: 'events/event', locals: {event: @next_event} %>
-
+    <% end %>
 
   <% else %>
 
     <% @upcoming_events.each do |event| %>
-
+      <% if @upcoming_events.count != 0%>
       <%= render partial: 'events/event', locals: {event: event} %>
-
+      <% end %>
     <% end %>
 
   <% end %>
