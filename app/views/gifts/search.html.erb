@@ -21,7 +21,7 @@
       <h3><%= item[:name] %></h3>
       <p><%= item[:category] %></p>
       <% if item[:price] != 0 %>
-        <p>List Price: $<%= item[:price].to_s.insert(-3, '.') %></p>
+        <p>Lowest New Price: $<%= item[:price].to_s.insert(-3, '.') %></p>
       <% end %>
 
       <% if current_user.events.count > 0 %>

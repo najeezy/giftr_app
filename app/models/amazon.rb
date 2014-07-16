@@ -11,7 +11,7 @@ class Amazon
       item = Hash.new
       item[:name] = info['Title']
       item[:category] = info['Binding'] ? info['Binding'] : "None"
-      item[:price] = info['ListPrice'] ? info['ListPrice']['Amount'].to_i : 0
+      item[:price] = item_hash['OfferSummary']['LowestNewPrice']['Amount'].to_i
       item[:small_image_url] = item_hash['SmallImage']['URL']
       item[:large_image_url] = item_hash['LargeImage']['URL']
       item[:amazon_url] = item_hash['DetailPageURL']
@@ -37,7 +37,7 @@ class Amazon
     data = "GET
 webservices.amazon.com
 /onca/xml
-AWSAccessKeyId=#{access_key}&AssociateTag=giftrcom-20&Condition=All&Keywords=#{URI.escape(search_term)}&Operation=ItemSearch&ResponseGroup=Images%2CItemAttributes&SearchIndex=All&Service=AWSECommerceService&Timestamp=#{iso_time}&Version=2011-08-01"
+AWSAccessKeyId=#{access_key}&AssociateTag=giftrcom-20&Condition=All&Keywords=#{URI.escape(search_term)}&Operation=ItemSearch&ResponseGroup=Images%2CItemAttributes%2COffers&SearchIndex=All&Service=AWSECommerceService&Timestamp=#{iso_time}&Version=2011-08-01"
 
     sig_code = Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), key, data)).strip()
     # sig_code.gsub!(/\+/, "%2")

@@ -5,8 +5,9 @@ Rails.application.routes.draw do
 
   # sessions
   get '/login'                  => 'sessions#new'
-  resources :sessions,          only: [:create]
   get '/logout'                 => 'sessions#destroy'
+  resources :sessions,          only: [:create]
+
 
   # users
   get '/users/:id/feed'         => 'users#feed', as: 'user_feed'

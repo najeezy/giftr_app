@@ -10,7 +10,11 @@
 <%= image_tag @gift.large_image_url %>
 
 <p><%= @gift.category %></p>
-<p>$<%= @gift.price.to_s.insert(-3,'.') %></p>
+
+<% unless @gift.price == 0 %>
+  <p>$<%= @gift.price.to_s.insert(-3,'.') %></p>
+<% end %>
+
 <p><%= @gift.specifics %></p>
 
 <% if @gift.user.id == session[:current_user] %>
