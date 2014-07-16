@@ -9,4 +9,4 @@ General Assembly WDI Project I
 * [ERD](https://www.lucidchart.com/documents/view/56418552-af69-4800-8446-cf28c95646bf)
 * [User Stories](https://trello.com/b/osqMFPwi)
 
-### The Site for now: [Giftr](http://enigmatic-reef-8598.herokuapp.com)
+The Site for now: [Giftr](http://enigmatic-reef-8598.herokuapp.com)
