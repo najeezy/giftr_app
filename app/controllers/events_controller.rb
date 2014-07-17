@@ -14,7 +14,6 @@ class EventsController < ApplicationController
   def create
     user = current_user
     date = params[:event][:date]
-
     params[:event][:date] = Event.check_date(params[:event][:date])
 
     @error_message = "You must enter a valid date" if params[:event][:date].nil?

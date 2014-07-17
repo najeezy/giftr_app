@@ -21,6 +21,26 @@
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.5;
+  background: url("http://i.imgur.com/ALDTid0.png?1")
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  margin-bottom: 10px;
+  border-bottom: 3px solid red;
+}
+
+.button input {
+  text-decoration: none;
+  background: #5160C7;
+  height: 75px;
+  width: 75px;
+  border: none;
+  border-radius: 50%;
+  border-bottom: 5px solid #2F3773;
+
 }
 
 div.header {
@@ -40,7 +60,7 @@ div.profile_links {
 }
 
 nav {
-  background: #8C2E25;
+  background: #B0312D;
   padding: 40px 0;
   border-radius: 0 0 20px 20px;
   margin-bottom: 100%;
@@ -113,9 +133,15 @@ div.button_link a:active {
 /*     gifts     */
 /*---------------*/
 
+div.gift {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border-bottom: 3px solid gray;
+}
+
 div.gift img {
   max-width: 40px;
-
 }
 
 div.search_result {
@@ -133,4 +159,8 @@ hr.top_search_border {
 
 h2.results_heading {
   margin-top: 20px;
+}
+
+.upcoming {
+  color: white;
 }

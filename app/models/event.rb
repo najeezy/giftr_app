@@ -11,9 +11,12 @@ class Event < ActiveRecord::Base
   end
 
   def self.check_date(date)
-    if /(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.]\d\d\d\d/ =~ date
+    if /(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.]\d\d\d\d/ =~ date && date.length <= 10
       date = date.split('/')
       date = date[2]+"-"+date[0]+"-"+date[1]
+      date = Date.parse(date)
+      date = nil if date <= Date.today
+    elsif /\d\d\d\d[. \/-](0[1-9]|1[012])[. \/-](0[1-9]|[12][0-9]|3[01])/ =~ date && date.length <= 10
       date = Date.parse(date)
       date = nil if date <= Date.today
     else

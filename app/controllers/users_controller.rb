@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       end
     end
 
-    @featured_gifts = gifts_without_buyers.sample(3)
+    @featured_gifts = gifts_without_buyers.sample(10)
     flash[:last_url] = user_feed_path(@user)
   end
 

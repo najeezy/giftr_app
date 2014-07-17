@@ -7,7 +7,9 @@
 
 <% if user == buyer %>
   <p>You are Giftr</p>
-  <%= button_to 'Cancel', gift_cancel_path(gift), method: :delete %>
+  <div class="cancel button">
+    <%= button_to 'Cancel', gift_cancel_path(gift), method: :delete %>
+  </div>
 
 <% elsif gift.claimed? %>
   <%= image_tag buyer.small_image_url %>
@@ -18,6 +20,8 @@
     <p>Buyer Cancelled!</p>
 
   <% end %>
-  <%= button_to 'Claim', gift_claim_path(gift), method: :put %>
+  <div class="claim button">
+    <%= button_to 'Claim', gift_claim_path(gift), method: :put %>
+  </div>
 
 <% end %>

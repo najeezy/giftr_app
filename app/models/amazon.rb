@@ -31,13 +31,9 @@ class Amazon
     # iso_time[2] = (day_ahead.first.to_i + 1).to_s + "T" + day_ahead.last
     # iso_time = iso_time[0]+"-"+iso_time[1]+"-"+iso_time[2]+".000Z"
 
-
     key = ENV["AWSSecretKey"]
     access_key= ENV["AWSAccessKeyId"]
-    data = "GET
-webservices.amazon.com
-/onca/xml
-AWSAccessKeyId=#{access_key}&AssociateTag=giftrcom-20&Condition=All&Keywords=#{URI.escape(search_term)}&Operation=ItemSearch&ResponseGroup=Images%2CItemAttributes%2COffers&SearchIndex=All&Service=AWSECommerceService&Timestamp=#{iso_time}&Version=2011-08-01"
+    data = "GET\nwebservices.amazon.com\n/onca/xml\nAWSAccessKeyId=#{access_key}&AssociateTag=giftrcom-20&Condition=All&Keywords=#{URI.escape(search_term)}&Operation=ItemSearch&ResponseGroup=Images%2CItemAttributes%2COffers&SearchIndex=All&Service=AWSECommerceService&Timestamp=#{iso_time}&Version=2011-08-01"
 
     sig_code = Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), key, data)).strip()
     # sig_code.gsub!(/\+/, "%2")

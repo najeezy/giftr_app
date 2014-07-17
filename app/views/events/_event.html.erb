@@ -1,4 +1,5 @@
 <div class="event">
     <h1><%= link_to event.title, event_path(event) %></h1>
     <p><%= event.fdate %></p>
+    <p>by: <%= link_to event.user.first_name, user_path(event.user) %></p>
 </div>

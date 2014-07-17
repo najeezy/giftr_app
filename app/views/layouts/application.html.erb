@@ -37,11 +37,11 @@
 
 
   <% if session[:current_user] %>
-    <div class='links thirteen columns'>
+    <div class='thirteen columns alpha'>
       <%= yield %>
     </div>
 
-    <nav class='three columns'>
+    <nav class='three columns omega'>
       <div>
         <p><%= link_to 'Add Event', new_user_event_path(main_user) %></p>
       </div>
